@@ -1,5 +1,39 @@
 Double click ons setup.bat file in windows to complete setup without any commands.
+
 In linux open terminal move to path where setup.sh is stored, chmod +x setup.sh, ./setup.sh and done setup complete.
+
+Extra Linux setup steps:
+
+
+
+### Step 1: Install the `python3-venv` package
+
+Run the following command to install the `python3-venv` package on your system:
+
+```bash
+sudo apt update
+sudo apt install python3.12-venv
+```
+
+This will install the necessary components to allow Python to create virtual environments.
+
+### Step 2: Recreate the Virtual Environment
+
+After the installation, you can proceed with your script. However, you'll need to delete the failed virtual environment first and then rerun the script:
+
+**Delete the existing virtual environment:**
+
+```bash
+rm -rf agent-zero/.venv
+```
+
+**Run your script again:**
+
+```bash
+./setup.sh
+```
+
+This should successfully create the virtual environment and install the Python dependencies within it.
 
 
 
