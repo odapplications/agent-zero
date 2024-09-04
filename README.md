@@ -13,6 +13,8 @@ Run the following command to install the `python3-venv` package on your system:
 ```bash
 sudo apt update
 sudo apt install python3.12-venv
+source venv/bin/activate
+sudo usermod -aG docker $USER
 ```
 
 This will install the necessary components to allow Python to create virtual environments.
