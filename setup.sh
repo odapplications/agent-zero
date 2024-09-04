@@ -6,6 +6,7 @@ set -e
 # Define variables
 REPO_URL="https://github.com/frdel/agent-zero.git"
 REPO_DIR="agent-zero"
+VENV_DIR=".venv"  # Virtual environment directory
 
 # Clone the repository if it doesn't exist
 if [ ! -d "$REPO_DIR" ]; then
@@ -31,16 +32,27 @@ if [ ! -f ".env" ]; then
 fi
 echo "Environment variables set up."
 
-# Install Python dependencies
+# Check if Python is installed
 echo "Checking for Python installation..."
 if ! command -v python3 &> /dev/null; then
     echo "Python is not installed. Please install Python and try again."
     exit 1
 fi
 
+# Create and activate a virtual environment if it doesn't exist
+echo "Setting up a virtual environment..."
+if [ ! -d "$VENV_DIR" ]; then
+    python3 -m venv "$VENV_DIR"
+    echo "Virtual environment created."
+fi
+
+# Activate the virtual environment
+source "$VENV_DIR/bin/activate"
+
+# Install Python dependencies in the virtual environment
 echo "Installing Python dependencies..."
-python3 -m pip install --upgrade pip
-python3 -m pip install -r requirements.txt
+pip install --upgrade pip
+pip install -r requirements.txt
 echo "Python dependencies installed."
 
 # Install Docker (optional)
